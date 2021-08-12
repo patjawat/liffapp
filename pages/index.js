@@ -1,26 +1,33 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-// import ProTip from '../src/ProTip';
-import Link from '../components/Link';
-// import Copyright from '../src/Copyright';
-import Navbar from '@/components/navbar'
+import { useEffect, useState } from 'react'
+import Head from 'next/head'
+import Image from 'next/image'
+
 
 export default function Index() {
+  const [profile, setProfile] = useState({})
+
+  useEffect(async () => {
+    const liff = (await import('@line/liff')).default
+    await liff.ready
+    const profile = await liff.getProfile()
+    setProfile(profile)
+  }, [profile.userId])
+
   return (
-    <Container maxWidth="sm">
-      <Navbar />
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Next.js example
-        </Typography>
-        <Link href="/about" color="secondary">
-          Go to the about page
-        </Link>
-        {/* <ProTip /> */}
-        {/* <Copyright /> */}
-      </Box>
-    </Container>
-  );
+    <section>
+      <Head>
+        <title>My Profile</title>
+      </Head>
+      <h1>Profile</h1>
+      <div>
+        {profile.pictureUrl && <Image
+          src={profile.pictureUrl}
+          alt={profile.displayName}
+          width={500}
+          height={500}
+        />}
+        <div>Name: {profile.displayName}</div>
+      </div>
+    </section>
+  )
 }
