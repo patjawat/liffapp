@@ -16,6 +16,7 @@ export default function Index() {
     try {
       await liff.init({ liffId });
       const profile = await liff.getProfile()
+      await setProfile(profile)
       console.log(profile)
     } catch (error) {
       console.error('liff init error', error.message)
@@ -32,6 +33,7 @@ export default function Index() {
       </Head>
       <h1>Profile</h1>
       <div>
+        {JSON.stringify(profile)}
         {profile.pictureUrl && <Image
           src={profile.pictureUrl}
           alt={profile.displayName}
