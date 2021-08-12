@@ -33,7 +33,7 @@ export default function Index() {
       </Head>
       <h1>Profile</h1>
       <div>
-        {JSON.stringify(profile)}
+        {JSON.stringify(profile.pictureUrl)}
         {profile.pictureUrl && <Image
           src={profile.pictureUrl}
           alt={profile.displayName}
