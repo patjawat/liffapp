@@ -15,6 +15,8 @@ export default function Index() {
      const liff = (await import('@line/liff')).default
     try {
       await liff.init({ liffId });
+      const profile = await liff.getProfile()
+      console.log(profile)
     } catch (error) {
       console.error('liff init error', error.message)
     }
