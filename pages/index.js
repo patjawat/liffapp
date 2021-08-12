@@ -5,12 +5,22 @@ import Image from 'next/image'
 
 export default function Index() {
   const [profile, setProfile] = useState({})
+  const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
   useEffect(async () => {
-    const liff = (await import('@line/liff')).default
-    await liff.ready
-    const profile = await liff.getProfile()
-    setProfile(profile)
+    // const liff = (await import('@line/liff')).default
+    // await liff.ready
+    // const profile = await liff.getProfile()
+    // setProfile(profile)
+     const liff = (await import('@line/liff')).default
+    try {
+      await liff.init({ liffId });
+    } catch (error) {
+      console.error('liff init error', error.message)
+    }
+    if (!liff.isLoggedIn()) {
+      liff.login();
+    }
   }, [profile.userId])
 
   return (
