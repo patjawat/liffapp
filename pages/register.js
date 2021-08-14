@@ -42,7 +42,7 @@ export default function Register() {
             }).then(() => {
               return MySwal.fire(<p>Shorthand works too</p>)
             })
-            liff.closeWindow()
+            // liff.closeWindow()
             setSave(data)
         } catch (error) {
             console.log(error)
