@@ -2,7 +2,11 @@ import React,{useState,useEffect} from 'react'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import axios  from 'axios';
+
+const MySwal = withReactContent(Swal)
 
 export default function Register() {
     const [profile, setProfile] = useState({})
@@ -27,6 +31,17 @@ export default function Register() {
             const res = axios.post(`${process.env.SHEET_USERS_API}`,data)
             // console.log(res)
             console.log(data)
+            MySwal.fire({
+              title: <p>Hello World</p>,
+              footer: 'Copyright 2018',
+              didOpen: () => {
+                // `MySwal` is a subclass of `Swal`
+                //   with all the same instance & static methods
+                MySwal.clickConfirm()
+              }
+            }).then(() => {
+              return MySwal.fire(<p>Shorthand works too</p>)
+            })
             liff.closeWindow()
             setSave(data)
         } catch (error) {
