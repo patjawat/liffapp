@@ -6,6 +6,7 @@ import axios  from 'axios';
 
 export default function Register() {
     const [profile, setProfile] = useState({})
+    const [save, setSave] = useState({})
 
     const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
@@ -45,6 +46,7 @@ export default function Register() {
             const res = axios.post(`${process.env.SHEET_USERS_API}`,data)
             // console.log(res)
             console.log(data)
+            setSave(data)
         } catch (error) {
             console.log(error)
         }
@@ -82,7 +84,7 @@ export default function Register() {
 
         <button type="submit" className="btn btn-primary btn-lg btn-block">ลงทะเบียน</button>
         </form>
-       
+       {JSON.stringify(save, null,2)}
       </div>
     );
 }
