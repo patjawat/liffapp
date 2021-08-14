@@ -37,9 +37,10 @@ export default function Register() {
               title: 'Your work has been saved',
               showConfirmButton: false,
               timer: 1500
+            }).then(()=>{
+              liff.closeWindow()
             })
             
-            // liff.closeWindow()
             setSave(data)
         } catch (error) {
             console.log(error)
