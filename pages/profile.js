@@ -11,17 +11,17 @@ export default function Profile() {
 
          const liff = (await import('@line/liff')).default
         try {
-        //   await liff.init({ liffId });
-        //   const profile = await liff.getProfile()
-        //   await setProfile(profile)
-        //   console.log(profile)
+          await liff.init({ liffId });
+          const profile = await liff.getProfile()
+          await setProfile(profile)
+          console.log(profile)
           await getData()
         } catch (error) {
           console.error('liff init error', error.message)
         }
-        // if (!liff.isLoggedIn()) {
-        // //   liff.login();
-        // }
+        if (!liff.isLoggedIn()) {
+        //   liff.login();
+        }
       }, [profile.userId])
   
 
