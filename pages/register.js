@@ -32,16 +32,13 @@ export default function Register() {
             // console.log(res)
             console.log(data)
             MySwal.fire({
-              title: <p>Hello World</p>,
-              footer: 'Copyright 2018',
-              didOpen: () => {
-                // `MySwal` is a subclass of `Swal`
-                //   with all the same instance & static methods
-                MySwal.clickConfirm()
-              }
-            }).then(() => {
-              return MySwal.fire(<p>Shorthand works too</p>)
+              position: 'top-end',
+              icon: 'success',
+              title: 'Your work has been saved',
+              showConfirmButton: false,
+              timer: 1500
             })
+            
             // liff.closeWindow()
             setSave(data)
         } catch (error) {
