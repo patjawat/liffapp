@@ -24,7 +24,7 @@ export default function Register() {
       console.error('liff init error', error.message)
     }
     if (!liff.isLoggedIn()) {
-      liff.login();
+      // liff.login();
     }
   }, [profile.userId])
 
@@ -56,8 +56,9 @@ export default function Register() {
 
     return (
         <div className="container">
+
             <h1 className="text-center">ลงทะเบียน</h1>
-            {JSON.stringify(profile, null, 2)};
+            {/* {JSON.stringify(profile, null, 2)}; */}
       <form onSubmit={handleSubmit(onSubmit)}>
             <input name="email" type="text" {...register('userId')} value={profile.userId} className={`form-control ${errors.userId ? 'is-invalid' : ''}`}  hidden="true"/>
             <input name="email" type="text" {...register('displayName')} value={profile.displayName} className={`form-control ${errors.displayName ? 'is-invalid' : ''}`} hidden="true" />
@@ -75,9 +76,9 @@ export default function Register() {
             <div className="invalid-feedback">{errors.phone?.message}</div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-lg btn-block">ลงทะเบียน</button>
+        <button type="submit" className="btn btn-primary btn-lg btn-block">ลงทะเบียน</button>
         </form>
-
+       
       </div>
     );
 }
