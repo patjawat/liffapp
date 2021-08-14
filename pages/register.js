@@ -31,14 +31,12 @@ export default function Register() {
 
     // form validation rules 
     const validationSchema = Yup.object().shape({
-        fullname: Yup.string()
-            .required('username is required'),
+        fname: Yup.string()
+            .required('ต้องระบุบ ชื่อ'),
+        lname: Yup.string()
+            .required('ต้องระบุบ นามสกุล'),
         phone: Yup.string()
-            .required('Email is required')
-            .email('Email is invalid'),
-        password: Yup.string()
-            .min(6, 'Password must be at least 6 characters')
-            .required('Password is required'),
+            .required('ต้องระบุบ เบอร์โทรศัพท์')
     });
     const formOptions = { resolver: yupResolver(validationSchema) };
 
