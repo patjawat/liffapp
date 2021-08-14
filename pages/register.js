@@ -44,6 +44,7 @@ export default function Register() {
    
     return (
         <div className="container">
+            {JSON.stringify(profile, null,2)}
            <button onClick={ ()=>{
                  try {
                     const res = axios.post(`${process.env.SHEET_USERS_API}`,{
