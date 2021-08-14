@@ -63,9 +63,15 @@ export default function Register() {
             <input name="email" type="text" {...register('pictureUrl')} value={profile.pictureUrl} className={`form-control ${errors.pictureUrl ? 'is-invalid' : ''}`} hidden="true" />
       
         <div className="form-group">
-            <label htmlFor="exampleInputEmail1">ชื่อ-นามสกุล</label>
-            <input name="email" type="text" {...register('fullname')} className={`form-control ${errors.fullname ? 'is-invalid' : ''}`} />
-            <div className="invalid-feedback">{errors.fullname?.message}</div>
+            <label htmlFor="exampleInputEmail1">ชื่อ</label>
+            <input name="email" type="text" {...register('fname')} className={`form-control ${errors.fname ? 'is-invalid' : ''}`} />
+            <div className="invalid-feedback">{errors.fname?.message}</div>
+        </div>
+
+        <div className="form-group">
+            <label htmlFor="exampleInputEmail1">นามสกุล</label>
+            <input name="email" type="text" {...register('lname')} className={`form-control ${errors.lname ? 'is-invalid' : ''}`} />
+            <div className="invalid-feedback">{errors.lname?.message}</div>
         </div>
 
         <div className="form-group">
