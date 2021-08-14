@@ -35,8 +35,7 @@ export default function Register() {
             .required('ต้องระบุบ ชื่อ'),
         lname: Yup.string()
             .required('ต้องระบุบ นามสกุล'),
-        phone: Yup.string()
-            .required('ต้องระบุบ เบอร์โทรศัพท์')
+        
     });
     const formOptions = { resolver: yupResolver(validationSchema) };
 
