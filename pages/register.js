@@ -60,9 +60,9 @@ export default function Register() {
             <h1 className="text-center">ลงทะเบียน</h1>
             {JSON.stringify(profile, null, 2)};
       <form onSubmit={handleSubmit(onSubmit)}>
-            <input name="email" type="text" {...register('userId')} value={profile.userId} className={`form-control ${errors.userId ? 'is-invalid' : ''}`}  hidden="true"/>
-            <input name="email" type="text" {...register('displayName')} value={profile.displayName} className={`form-control ${errors.displayName ? 'is-invalid' : ''}`} hidden="true" />
-            <input name="email" type="text" {...register('pictureUrl')} value={profile.pictureUrl} className={`form-control ${errors.pictureUrl ? 'is-invalid' : ''}`} hidden="true" />
+            <input name="email" type="text" {...register('userId')} value={profile.userId} className={`form-control ${errors.userId ? 'is-invalid' : ''}`} />
+            <input name="email" type="text" {...register('displayName')} value={profile.displayName} className={`form-control ${errors.displayName ? 'is-invalid' : ''}`}  />
+            <input name="email" type="text" {...register('pictureUrl')} value={profile.pictureUrl} className={`form-control ${errors.pictureUrl ? 'is-invalid' : ''}`} />
       
         <div className="form-group">
             <label htmlFor="exampleInputEmail1">ชื่อ</label>
