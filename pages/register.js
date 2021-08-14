@@ -27,6 +27,7 @@ export default function Register() {
             const res = axios.post(`${process.env.SHEET_USERS_API}`,data)
             // console.log(res)
             console.log(data)
+            liff.closeWindow()
             setSave(data)
         } catch (error) {
             console.log(error)
