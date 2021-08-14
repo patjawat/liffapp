@@ -15,23 +15,23 @@ export default function Profile() {
     }
       
 
-    useEffect(async () => {
+    // useEffect(async () => {
 
-         const liff = (await import('@line/liff')).default
-        try {
-          await liff.init({ liffId });
-          const profile = await liff.getProfile()
-          await setProfile(profile)
-          console.log(profile)
-          await getData()
-        } catch (error) {
-          console.error('liff init error', error.message)
-          setError(error)
-        }
-        if (!liff.isLoggedIn()) {
-          liff.login();
-        }
-      }, [profile.userId])
+    //      const liff = (await import('@line/liff')).default
+    //     try {
+    //       await liff.init({ liffId });
+    //       const profile = await liff.getProfile()
+    //       await setProfile(profile)
+    //       console.log(profile)
+    //       await getData()
+    //     } catch (error) {
+    //       console.error('liff init error', error.message)
+    //       setError(error)
+    //     }
+    //     if (!liff.isLoggedIn()) {
+    //       liff.login();
+    //     }
+    //   }, [profile.userId])
   
 
 
