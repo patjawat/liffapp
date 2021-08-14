@@ -59,18 +59,18 @@ export default function Register() {
             <h1 className="text-center">ลงทะเบียน</h1>
             {JSON.stringify(profile, null, 2)};
       <form onSubmit={handleSubmit(onSubmit)}>
-            <input name="email" type="text" {...register('userId')} className={`form-control ${errors.userId ? 'is-invalid' : ''}`} />
-            <input name="email" type="text" {...register('displayName')} className={`form-control ${errors.displayName ? 'is-invalid' : ''}`} />
-            <input name="email" type="text" {...register('pictureUrl')} className={`form-control ${errors.pictureUrl ? 'is-invalid' : ''}`} />
+            <input name="email" type="text" {...register('userId')} value={profile.userId} className={`form-control ${errors.userId ? 'is-invalid' : ''}`} />
+            <input name="email" type="text" {...register('displayName')} value={profile.displayName} className={`form-control ${errors.displayName ? 'is-invalid' : ''}`} />
+            <input name="email" type="text" {...register('pictureUrl')} value={profile.pictureUrl} className={`form-control ${errors.pictureUrl ? 'is-invalid' : ''}`} />
       
         <div className="form-group">
-            <label htmlFor="exampleInputEmail1">username</label>
+            <label htmlFor="exampleInputEmail1">ชื่อ-นามสกุล</label>
             <input name="email" type="text" {...register('fullname')} className={`form-control ${errors.fullname ? 'is-invalid' : ''}`} />
             <div className="invalid-feedback">{errors.fullname?.message}</div>
         </div>
 
         <div className="form-group">
-            <label>Email</label>
+            <label>โทรศัพท์</label>
             <input name="email" type="text" {...register('phome')} className={`form-control ${errors.phone ? 'is-invalid' : ''}`} />
             <div className="invalid-feedback">{errors.phone?.message}</div>
         </div>
