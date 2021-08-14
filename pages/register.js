@@ -57,7 +57,7 @@ export default function Register() {
     return (
         <div className="container">
             <h1 className="text-center">ลงทะเบียน</h1>
-            {JSON.stringify(profile)}
+            {JSON.stringify(profile, null, 2)};
       <form onSubmit={handleSubmit(onSubmit)}>
       
         <div className="form-group">
