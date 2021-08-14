@@ -20,7 +20,7 @@ export default function Profile() {
           console.error('liff init error', error.message)
         }
         if (!liff.isLoggedIn()) {
-        //   liff.login();
+          liff.login();
         }
       }, [profile.userId])
   
