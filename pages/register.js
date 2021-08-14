@@ -29,34 +29,55 @@ export default function Register() {
   }, [profile.userId])
 
 
+    // form validation rules 
+    const validationSchema = Yup.object().shape({
+        fullname: Yup.string()
+            .required('username is required'),
+        phone: Yup.string()
+            .required('Email is required')
+            .email('Email is invalid'),
+        password: Yup.string()
+            .min(6, 'Password must be at least 6 characters')
+            .required('Password is required'),
+    });
+    const formOptions = { resolver: yupResolver(validationSchema) };
+
+    
     const onSubmit = data => {
         try {
-            const res = axios.post(`${process.env.SHEET_USERS_API}`,{
-                userId:profile.userId,
-                displayName:profile.displayName,
-                pictureUrl:profile.pictureUrl,
-            })
+            const res = axios.post(`${process.env.SHEET_USERS_API}`,data)
             console.log(res)
         } catch (error) {
             console.log(error)
         }
     };
-   
+    const { register, handleSubmit, reset, formState } = useForm(formOptions);
+    const { errors } = formState;
+
     return (
         <div className="container">
-            {JSON.stringify(profile, null,2)}
-           <button onClick={ ()=>{
-                 try {
-                    const res = axios.post(`${process.env.SHEET_USERS_API}`,{
-                        userId:profile.userId,
-                        displayName:profile.displayName,
-                        pictureUrl:profile.pictureUrl,
-                    })
-                    console.log(res)
-                } catch (error) {
-                    console.log(error)
-                }
-           }}>ตกลง</button>
+            <h1 className="text-center">ลงทะเบียน</h1>
+            {JSON.stringify(profile, null, 2)};
+      <form onSubmit={handleSubmit(onSubmit)}>
+            <input name="email" type="text" {...register('userId')} className={`form-control ${errors.userId ? 'is-invalid' : ''}`} />
+            <input name="email" type="text" {...register('displayName')} className={`form-control ${errors.displayName ? 'is-invalid' : ''}`} />
+            <input name="email" type="text" {...register('pictureUrl')} className={`form-control ${errors.pictureUrl ? 'is-invalid' : ''}`} />
+      
+        <div className="form-group">
+            <label htmlFor="exampleInputEmail1">username</label>
+            <input name="email" type="text" {...register('fullname')} className={`form-control ${errors.fullname ? 'is-invalid' : ''}`} />
+            <div className="invalid-feedback">{errors.fullname?.message}</div>
+        </div>
+
+        <div className="form-group">
+            <label>Email</label>
+            <input name="email" type="text" {...register('phome')} className={`form-control ${errors.phone ? 'is-invalid' : ''}`} />
+            <div className="invalid-feedback">{errors.phone?.message}</div>
+        </div>
+
+        <button type="submit" className="btn btn-primary">Submit</button>
+        </form>
+
       </div>
     );
 }
