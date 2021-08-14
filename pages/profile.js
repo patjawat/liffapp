@@ -6,6 +6,7 @@ export default function Profile() {
 
     const [profile, setProfile] = useState({})
     const [data, setData] = useState({})
+    const [error, setError] = useState({})
 
     const getData = async () => {
         const res = await axios.get(`${process.env.SHEET_USERS_API}/search?userId=*Ua45c4dcdc6ec65b8e9fff4a2693bcf72*`)
@@ -13,7 +14,7 @@ export default function Profile() {
         console.log(res)
     }
       
-    
+
     useEffect(async () => {
 
          const liff = (await import('@line/liff')).default
@@ -25,6 +26,7 @@ export default function Profile() {
           await getData()
         } catch (error) {
           console.error('liff init error', error.message)
+          setError(error)
         }
         if (!liff.isLoggedIn()) {
           liff.login();
@@ -36,39 +38,11 @@ export default function Profile() {
     return (
         <div>
             {JSON.stringify(data,null,2)}
+            {JSON.stringify(error,null,2)}
+            
             ข้อมูลส่วนตัว
         </div>
     )
 }
 
-
-// export async function getServerSideProps({req,res}) {
-//     let headers = {}
-//     let me = {}
-  
-//     const session = await getSession({ req });
-//     if (session) {
-//       headers = {Authorization: `Bearer ${session.jwt}`};
-//     }else{
-//       res.writeHead(302, { Location: '/register' })
-//       res.end()
-//       return {}
-//     }
-//     let journals = [];
-  
-//     try {
-  
-//       let {data} = await axios.get(`${process.env.api}/profiles/me`, {
-//         headers: headers,
-//       })
-  
-    
-//       journals = data;
-//     } catch (e) {
-//       console.log('caught error');
-//       journals = [];
-//     }
-    
-//     return {props: {journals:journals,session:session }}  
-//   }
 
