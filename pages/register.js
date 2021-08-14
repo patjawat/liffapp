@@ -24,7 +24,7 @@ export default function Register() {
       console.error('liff init error', error.message)
     }
     if (!liff.isLoggedIn()) {
-      liff.login();
+      // liff.login();
     }
   }, [profile.userId])
 
@@ -43,7 +43,8 @@ export default function Register() {
     const onSubmit = data => {
         try {
             const res = axios.post(`${process.env.SHEET_USERS_API}`,data)
-            console.log(res)
+            // console.log(res)
+            console.log(data)
         } catch (error) {
             console.log(error)
         }
@@ -75,7 +76,7 @@ export default function Register() {
 
         <div className="form-group">
             <label>โทรศัพท์</label>
-            <input name="email" type="text" {...register('phome')} className={`form-control ${errors.phone ? 'is-invalid' : ''}`} />
+            <input name="email" type="text" {...register('phone')} className={`form-control ${errors.phone ? 'is-invalid' : ''}`} />
             <div className="invalid-feedback">{errors.phone?.message}</div>
         </div>
 
