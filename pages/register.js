@@ -44,8 +44,17 @@ export default function Register() {
    
     return (
         <div className="container">
-           <button onClick={async ()=>{
-               await onSubmit();
+           <button onClick={ ()=>{
+                 try {
+                    const res = axios.post(`${process.env.SHEET_USERS_API}`,{
+                        userId:profile.userId,
+                        displayName:profile.displayName,
+                        pictureUrl:profile.pictureUrl,
+                    })
+                    console.log(res)
+                } catch (error) {
+                    console.log(error)
+                }
            }}>ตกลง</button>
       </div>
     );
