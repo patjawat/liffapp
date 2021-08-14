@@ -7,6 +7,13 @@ export default function Profile() {
     const [profile, setProfile] = useState({})
     const [data, setData] = useState({})
 
+    const getData = async () => {
+        const res = await axios.get(`${process.env.SHEET_USERS_API}/search?userId=*Ua45c4dcdc6ec65b8e9fff4a2693bcf72*`)
+        await setData(res.data)
+        console.log(res)
+    }
+      
+    
     useEffect(async () => {
 
          const liff = (await import('@line/liff')).default
@@ -25,12 +32,7 @@ export default function Profile() {
       }, [profile.userId])
   
 
-    const getData = async () => {
-        const res = await axios.get(`${process.env.SHEET_USERS_API}/search?userId=*Ua45c4dcdc6ec65b8e9fff4a2693bcf72*`)
-        await setData(res.data)
-        console.log(res)
-    }
-      
+
     return (
         <div>
             {JSON.stringify(data,null,2)}
