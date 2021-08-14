@@ -76,11 +76,10 @@ export default function Register() {
         <div className="container">
 
             <h1 className="text-center">ลงทะเบียน</h1>
-            {JSON.stringify(profile, null, 2)};
       <form onSubmit={handleSubmit(onSubmit)}>
-            <input name="email" type="text" {...register('userId')}  className={`form-control ${errors.userId ? 'is-invalid' : ''}`} />
-            <input name="email" type="text" {...register('displayName')} className={`form-control ${errors.displayName ? 'is-invalid' : ''}`}  />
-            <input name="email" type="text" {...register('pictureUrl')}  className={`form-control ${errors.pictureUrl ? 'is-invalid' : ''}`} />
+            <input name="email" type="text" {...register('userId')}  className={`form-control ${errors.userId ? 'is-invalid' : ''}`} hidden="true"/>
+            <input name="email" type="text" {...register('displayName')} className={`form-control ${errors.displayName ? 'is-invalid' : ''}`}  hidden="true" />
+            <input name="email" type="text" {...register('pictureUrl')}  className={`form-control ${errors.pictureUrl ? 'is-invalid' : ''}`} hidden="true" />
       
         <div className="form-group">
             <label htmlFor="exampleInputEmail1">ชื่อ</label>
@@ -102,7 +101,6 @@ export default function Register() {
 
         <button type="submit" className="btn btn-primary btn-lg btn-block">ลงทะเบียน</button>
         </form>
-       {JSON.stringify(save, null,2)}
       </div>
     );
 }
