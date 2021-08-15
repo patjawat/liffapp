@@ -10,7 +10,7 @@ export default function Profile() {
 
     const getData = async () => {
         const res = await axios.get(`${process.env.SHEET_USERS_API}/search?userId=*Ua45c4dcdc6ec65b8e9fff4a2693bcf72*`)
-        await setData(res.data)
+        await setData(res)
         console.log(res)
     }
 
