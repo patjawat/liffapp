@@ -15,6 +15,7 @@ export default function Profile() {
     }
 
     useEffect(async () => {
+        await getData()
          const liff = (await import('@line/liff')).default
         try {
           await liff.init({ liffId });
