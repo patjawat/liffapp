@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 
 import axios  from 'axios';
 export default function Profile() {
-    const liffId = process.env.NEXT_PUBLIC_LIFF_ID
+    const liffId = process.env.NEXT_PUBLIC_LIFF_PROFILE_ID
 
     const [profile, setProfile] = useState({})
     const [data, setData] = useState({})
