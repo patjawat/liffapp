@@ -13,6 +13,24 @@ export default function Profile() {
         await setData(res.data)
         console.log(res)
     }
+
+    useEffect(async () => {
+         const liff = (await import('@line/liff')).default
+        try {
+          await liff.init({ liffId });
+          const profile = await liff.getProfile()
+          await setProfile(profile)
+          console.log(profile)
+        } catch (error) {
+          console.error('liff init error', error.message)
+        }
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        }
+      }, [profile.userId])
+    
+
+      
       
 
     return (
