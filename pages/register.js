@@ -66,7 +66,7 @@ export default function Register() {
         console.error('liff init error', error.message)
       }
       if (!liff.isLoggedIn()) {
-        liff.login();
+        // liff.login();
       }
     }, [profile.userId])
   
@@ -74,7 +74,7 @@ export default function Register() {
     
     return (
         <div className="container">
-
+{JSON.stringify(profile)}
             <h1 className="text-center">ลงทะเบียน</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
             <input name="email" type="text" {...register('userId')}  className={`form-control ${errors.userId ? 'is-invalid' : ''}`} hidden="true"/>
