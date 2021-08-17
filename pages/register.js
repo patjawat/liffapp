@@ -28,20 +28,20 @@ export default function Register() {
     
     const onSubmit = data => {
         try {
-            const res = axios.post(`${process.env.SHEET_USERS_API}`,data)
+            const res = axios.post(`${process.env.API}`,data)
             // console.log(res)
             console.log(data)
-            MySwal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Your work has been saved',
-              showConfirmButton: false,
-              timer: 1500
-            }).then(()=>{
-              liff.closeWindow()
-            })
+            // MySwal.fire({
+            //   position: 'top-end',
+            //   icon: 'success',
+            //   title: 'Your work has been saved',
+            //   showConfirmButton: false,
+            //   timer: 1500
+            // }).then(()=>{
+            //   liff.closeWindow()
+            // })
             
-            setSave(data)
+            // setSave(data)
         } catch (error) {
             console.log(error)
         }
@@ -66,7 +66,7 @@ export default function Register() {
         console.error('liff init error', error.message)
       }
       if (!liff.isLoggedIn()) {
-        liff.login();
+        // liff.login();
       }
     }, [profile.userId])
   
