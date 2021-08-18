@@ -49,6 +49,9 @@ export default function profile() {
         if(data.length==0){
             await setStatus(false)
             // router.push('/register')
+        }else{
+            await setStatus(true)
+
         }
 
         } catch (error) {
