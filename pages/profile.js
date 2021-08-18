@@ -6,7 +6,8 @@ export default function profile() {
 
     const router = useRouter()
     const [profile, setProfile] = useState({})
-    const [line, setLine] = useState({})
+    const [status, setStatus] = useState(true)
+    const [line, setLine] = useState("")
 
     const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
@@ -14,10 +15,11 @@ export default function profile() {
     const getMe = async () =>{
         try {
             const {data} = await axios.post(`${process.env.API}profiles/me`,{
-                id:line.lineId
+                id:line !="" ? line.lineId : ""
             })
             if(data.length==0){
-                router.push('/register')
+                await setStatus(false)
+                // router.push('/register')
             }
             console.log(data.length)
         } catch (error) {
@@ -26,6 +28,10 @@ export default function profile() {
         }
     }
 
+
+    // useEffect(async () => {
+    //     await getMe()
+    // },[])
 
     useEffect(async () => {
 
@@ -46,12 +52,19 @@ export default function profile() {
 
 
     
-
+if(status == false){
+    return(
+        <div>
+            <h1 className="text-center">ท่านยังไม่ได้ลงทะเบียน</h1>
+            <button className="btn btn-primary btn-block" onClick={() =>{router.push('/register')}}>ลงทะเบียนที่นี่</button>
+        </div>
+    )
+}
       
 
     return (
         <div>
-            ppp
+        <h1 className="text-center">ยินดีต้อนรับ</h1>
         </div>
     )
 }
