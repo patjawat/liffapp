@@ -72,28 +72,28 @@ export default function Register() {
     const { errors } = formState;
 
 
-    useEffect(async () => {
-      await getCategories()
-    },[])
-
     // useEffect(async () => {
-    //   await reset({line_id:profile.userId,displayName:profile.displayName,pictureUrl:profile.pictureUrl})
-    
-    //    const liff = (await import('@line/liff')).default
-    //   try {
-    //     await liff.init({ liffId });
-    //     const profile = await liff.getProfile()
-    //     await setProfile(profile)
-    //     await getCategories()
+    //   await getCategories()
+    // },[])
 
-    //     console.log(profile)
-    //   } catch (error) {
-    //     console.error('liff init error', error.message)
-    //   }
-    //   if (!liff.isLoggedIn()) {
-    //     liff.login();
-    //   }
-    // }, [profile.userId])
+    useEffect(async () => {
+      await reset({line_id:profile.userId,displayName:profile.displayName,pictureUrl:profile.pictureUrl})
+    
+       const liff = (await import('@line/liff')).default
+      try {
+        await liff.init({ liffId });
+        const profile = await liff.getProfile()
+        await setProfile(profile)
+        await getCategories()
+
+        console.log(profile)
+      } catch (error) {
+        console.error('liff init error', error.message)
+      }
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
+    }, [profile.userId])
   
 
     
