@@ -53,18 +53,18 @@ export default function Register() {
     useEffect(async () => {
       await reset({userId:profile.userId,displayName:profile.displayName,pictureUrl:profile.pictureUrl})
     
-      //  const liff = (await import('@line/liff')).default
-      // try {
-      //   await liff.init({ liffId });
-      //   const profile = await liff.getProfile()
-      //   await setProfile(profile)
-      //   console.log(profile)
-      // } catch (error) {
-      //   console.error('liff init error', error.message)
-      // }
-      // if (!liff.isLoggedIn()) {
-      //   liff.login();
-      // }
+       const liff = (await import('@line/liff')).default
+      try {
+        await liff.init({ liffId });
+        const profile = await liff.getProfile()
+        await setProfile(profile)
+        console.log(profile)
+      } catch (error) {
+        console.error('liff init error', error.message)
+      }
+      if (!liff.isLoggedIn()) {
+        liff.login();
+      }
     }, [profile.userId])
   
 
