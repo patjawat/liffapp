@@ -40,7 +40,17 @@ export default function profile() {
           await liff.init({ liffId });
           const profile = await liff.getProfile()
           await setLine(profile)
-          await getMe()
+        //   await getMe()
+
+        const {data} = await axios.post(`${process.env.API}profiles/me`,{
+            id:profile ? profile.userId : ""
+        })
+        
+        if(data.length==0){
+            await setStatus(false)
+            // router.push('/register')
+        }
+
         } catch (error) {
           console.error('liff init error', error.message)
         }
