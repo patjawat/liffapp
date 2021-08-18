@@ -29,6 +29,7 @@ export default function Register() {
         try {
 
           const formInput = {
+            ยืฟทำ:data.pname.value,
             fname:data.fname,
             lname:data.lname,
             line_id:data.line_id,
@@ -105,6 +106,22 @@ export default function Register() {
             <input name="email" type="text" {...register('displayName')} className={`form-control ${errors.displayName ? 'is-invalid' : ''}`} hidden="true" />
             <input name="email" type="text" {...register('pictureUrl')}  className={`form-control ${errors.pictureUrl ? 'is-invalid' : ''}`} hidden="true" />
       
+            <div className="form-group">
+        <label>ยื่นขอในตำแหน่ง</label>
+        <Controller
+        name="pname"
+        control={control}
+        render={({ field }) => <Select 
+          {...field} 
+          options={[
+            { value: 'นาย', label: 'นาย' },
+            { value: 'นาง', label: 'นาง' },
+            { value: 'นางสาว', label: 'นางสาว' },
+          ]}
+        />}
+      />
+        </div>
+
         <div className="form-group">
             <label htmlFor="exampleInputEmail1">ชื่อ</label>
             <input name="email" type="text" {...register('fname')} className={`form-control ${errors.fname ? 'is-invalid' : ''}`} />
