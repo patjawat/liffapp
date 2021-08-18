@@ -15,7 +15,7 @@ export default function profile() {
     const getMe = async () =>{
         try {
             const {data} = await axios.post(`${process.env.API}profiles/me`,{
-                id:line !="" ? line.lineId : ""
+                id:line !="" ? line.userId : ""
             })
             if(data.length==0){
                 await setStatus(false)
