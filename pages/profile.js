@@ -41,7 +41,7 @@ export default function profile() {
         if (!liff.isLoggedIn()) {
           liff.login();
         }
-      }, [profile.userId])
+      }, [line.userId])
 
 
 
