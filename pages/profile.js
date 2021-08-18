@@ -7,6 +7,7 @@ export default function profile() {
     const router = useRouter()
     const [profile, setProfile] = useState({})
     const [status, setStatus] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [line, setLine] = useState("")
 
     const liffId = process.env.NEXT_PUBLIC_LIFF_ID
@@ -45,6 +46,7 @@ export default function profile() {
         const {data} = await axios.post(`${process.env.API}profiles/me`,{
             id:profile ? profile.userId : ""
         })
+        await setLoading(false)
 
         if(data.length==0){
             await setStatus(false)
@@ -64,6 +66,13 @@ export default function profile() {
 
 
 
+      if(loading){
+          return (
+              <div className="container">
+                    Loading
+              </div>
+          )
+      }
     
 if(status == false){
     return(
