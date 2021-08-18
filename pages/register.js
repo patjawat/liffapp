@@ -31,15 +31,15 @@ export default function Register() {
             const res = await axios.post(`${process.env.API}profiles/add-me`,data)
             // console.log(res)
             console.log(res)
-            // MySwal.fire({
-            //   position: 'top-end',
-            //   icon: 'success',
-            //   title: 'Your work has been saved',
-            //   showConfirmButton: false,
-            //   timer: 1500
-            // }).then(()=>{
-            //   liff.closeWindow()
-            // })
+            MySwal.fire({
+              position: 'center-end',
+              icon: 'success',
+              title: 'บันทึกข้อมูลสำเร็จ',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(()=>{
+              liff.closeWindow()
+            })
             
             // setSave(data)
         } catch (error) {
@@ -71,7 +71,7 @@ export default function Register() {
     
     return (
         <div className="container">
-{JSON.stringify(profile)}
+{/* {JSON.stringify(profile)} */}
             <h1 className="text-center">ลงทะเบียน</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
             <input name="email" type="text" {...register('line_id')}  className={`form-control ${errors.line_id ? 'is-invalid' : ''}`} />
