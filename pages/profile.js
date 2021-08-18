@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-import Spinner from 'react-material-spinner'
+import Spinner from 'react-spinner-material';
 export default function profile() {
 
     const router = useRouter()
