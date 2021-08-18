@@ -28,7 +28,7 @@ export default function Register() {
     
     const onSubmit = async data => {
         try {
-            const res = await axios.post(`${process.env.API}profiles`,data)
+            const res = await axios.post(`${process.env.API}add-me`,data)
             // console.log(res)
             console.log(res)
             // MySwal.fire({
