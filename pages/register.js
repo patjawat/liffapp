@@ -107,7 +107,7 @@ export default function Register() {
             <input name="email" type="text" {...register('pictureUrl')}  className={`form-control ${errors.pictureUrl ? 'is-invalid' : ''}`} hidden="true" />
       
             <div className="form-group">
-        <label>ยื่นขอในตำแหน่ง</label>
+        <label>คำนำหน้า</label>
         <Controller
         name="pname"
         control={control}
