@@ -64,8 +64,8 @@ export default function profile() {
     
 if(status == false){
     return(
-        <div>
-            {JSON.stringify(line)}
+        <div className="container">
+            {/* {JSON.stringify(line)} */}
 
             <h1 className="text-center">ท่านยังไม่ได้ลงทะเบียน</h1>
             <button className="btn btn-primary btn-block" onClick={() =>{router.push('/register')}}>ลงทะเบียนที่นี่</button>
@@ -75,8 +75,8 @@ if(status == false){
       
 
     return (
-        <div>
-            {JSON.stringify(line)}
+        <div className="container">
+            {/* {JSON.stringify(line)} */}
         <h1 className="text-center">ยินดีต้อนรับ</h1>
         </div>
     )
