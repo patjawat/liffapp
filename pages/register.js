@@ -12,6 +12,7 @@ const MySwal = withReactContent(Swal)
 export default function Register() {
 
     const [categorisClass, setCategorisClass] = useState([])
+    const [profile, setProfile] = useState([])
     const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
     // form validation rules 
