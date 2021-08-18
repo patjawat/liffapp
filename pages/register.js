@@ -26,11 +26,11 @@ export default function Register() {
     const formOptions = { resolver: yupResolver(validationSchema) };
 
     
-    const onSubmit = data => {
+    const onSubmit = async data => {
         try {
-            const res = axios.post(`${process.env.API}`,data)
+            const res = await axios.post(`${process.env.API}profiles`,data)
             // console.log(res)
-            console.log(data)
+            console.log(res)
             // MySwal.fire({
             //   position: 'top-end',
             //   icon: 'success',
@@ -52,22 +52,19 @@ export default function Register() {
 
     useEffect(async () => {
       await reset({userId:profile.userId,displayName:profile.displayName,pictureUrl:profile.pictureUrl})
-      // const liff = (await import('@line/liff')).default
-      // await liff.ready
-      // const profile = await liff.getProfile()
-      // setProfile(profile)
-       const liff = (await import('@line/liff')).default
-      try {
-        await liff.init({ liffId });
-        const profile = await liff.getProfile()
-        await setProfile(profile)
-        console.log(profile)
-      } catch (error) {
-        console.error('liff init error', error.message)
-      }
-      if (!liff.isLoggedIn()) {
-        liff.login();
-      }
+    
+      //  const liff = (await import('@line/liff')).default
+      // try {
+      //   await liff.init({ liffId });
+      //   const profile = await liff.getProfile()
+      //   await setProfile(profile)
+      //   console.log(profile)
+      // } catch (error) {
+      //   console.error('liff init error', error.message)
+      // }
+      // if (!liff.isLoggedIn()) {
+      //   liff.login();
+      // }
     }, [profile.userId])
   
 
