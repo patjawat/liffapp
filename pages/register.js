@@ -16,7 +16,6 @@ export default function Register() {
 
     const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
-
     // form validation rules 
     const validationSchema = Yup.object().shape({
         fname: Yup.string()
@@ -30,18 +29,31 @@ export default function Register() {
     
     const onSubmit = async data => {
         try {
-            const res = await axios.post(`${process.env.API}profiles/add-me`,data)
-            // console.log(res)
+
+          const formInput = {
+            fname:data.fname,
+            lname:data.lname,
+            line_id:data.line_id,
+            displayName:data.displayName,
+            pictureUrl:data.pictureUrl,
+            email:data.email,
+            class:data.class.value,
+            position:data.position.value,
+            field_of_study:data.field_of_study.value,
+
+          }
+            const res = await axios.post(`${process.env.API}profiles/add-me`,formInput)
             console.log(res)
-            MySwal.fire({
-              position: 'center-end',
-              icon: 'success',
-              title: 'บันทึกข้อมูลสำเร็จ',
-              showConfirmButton: false,
-              timer: 1500
-            }).then(()=>{
-              liff.closeWindow()
-            })
+            // console.log(formInput)
+            // MySwal.fire({
+            //   position: 'center-end',
+            //   icon: 'success',
+            //   title: 'บันทึกข้อมูลสำเร็จ',
+            //   showConfirmButton: false,
+            //   timer: 1500
+            // }).then(()=>{
+            //   liff.closeWindow()
+            // })
             
             // setSave(data)
         } catch (error) {
@@ -63,28 +75,28 @@ export default function Register() {
     const { errors } = formState;
 
 
-    // useEffect(async () => {
-    //   await getCategories()
-    // },[])
-
     useEffect(async () => {
-      await reset({line_id:profile.userId,displayName:profile.displayName,pictureUrl:profile.pictureUrl})
-    
-       const liff = (await import('@line/liff')).default
-      try {
-        await liff.init({ liffId });
-        const profile = await liff.getProfile()
-        await setProfile(profile)
-        await getCategories()
+      await getCategories()
+    },[])
 
-        console.log(profile)
-      } catch (error) {
-        console.error('liff init error', error.message)
-      }
-      if (!liff.isLoggedIn()) {
-        liff.login();
-      }
-    }, [profile.userId])
+    // useEffect(async () => {
+    //   await reset({line_id:profile.userId,displayName:profile.displayName,pictureUrl:profile.pictureUrl})
+    
+    //    const liff = (await import('@line/liff')).default
+    //   try {
+    //     await liff.init({ liffId });
+    //     const profile = await liff.getProfile()
+    //     await setProfile(profile)
+    //     await getCategories()
+
+    //     console.log(profile)
+    //   } catch (error) {
+    //     console.error('liff init error', error.message)
+    //   }
+    //   if (!liff.isLoggedIn()) {
+    //     liff.login();
+    //   }
+    // }, [profile.userId])
   
 
     
@@ -112,12 +124,14 @@ export default function Register() {
         <div className="form-group">
         <label>สังกัด</label>
         <Controller
-        name="iceCreamType"
+        name="class"
         control={control}
+        // {...register('class')}
         render={({ field }) => <Select 
           {...field} 
+          // options={options}
           options={categorisClass.map((option) => ({
-            ...option,
+            // ...option,
             label: option.title,
             value: option.id,
             clearableValue: true
@@ -126,6 +140,7 @@ export default function Register() {
       />
         </div>
 
+      
         <div className="form-group">
             <label>โทรศัพท์</label>
             <input name="email" type="text" {...register('phone')} className={`form-control ${errors.phone ? 'is-invalid' : ''}`} />
@@ -135,7 +150,7 @@ export default function Register() {
         <div className="form-group">
         <label>ยื่นขอในตำแหน่ง</label>
         <Controller
-        name="iceCreamType"
+        name="position"
         control={control}
         render={({ field }) => <Select 
           {...field} 
@@ -152,7 +167,7 @@ export default function Register() {
         <div className="form-group">
         <label>สาขาวิชา</label>
         <Controller
-        name="iceCreamType"
+        name="field_of_study"
         control={control}
         render={({ field }) => <Select 
           {...field} 
@@ -164,7 +179,8 @@ export default function Register() {
         }))}
         />}
       />
-        </div>
+        </div> 
+        
 
         <div className="form-group">
             <label htmlFor="exampleInputEmail1">email(ถ้ามี)</label>
