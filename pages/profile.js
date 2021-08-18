@@ -1,7 +1,10 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
+import { useRouter } from 'next/router'
+
 export default function profile() {
 
+    const router = useRouter()
     const [profile, setProfile] = useState({})
 
     const liffId = process.env.NEXT_PUBLIC_LIFF_ID
@@ -9,12 +12,16 @@ export default function profile() {
 
     const getMe = async () =>{
         try {
-            const res = await axios.post(`${process.env.API}profiles/me`,{
-                id:"Ua45c4dcdc6ec65b8e9fff4a2693bcf72"
+            const {data} = await axios.post(`${process.env.API}profiles/me`,{
+                id:"Ua45c4dcdc6ec65b8e9fff4a2693bcf72xx"
             })
-            console.log(res.data)
+            if(data.length==0){
+                router.push('/register')
+            }
+            console.log(data.length)
         } catch (error) {
             console.log(error)
+            
         }
     }
 
