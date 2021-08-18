@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
-
+import Spinner from 'react-material-spinner'
 export default function profile() {
 
     const router = useRouter()
@@ -69,7 +69,7 @@ export default function profile() {
       if(loading){
           return (
               <div className="container">
-                    Loading
+                    <Spinner radius={120} color={"#333"} stroke={2} visible={true} />
               </div>
           )
       }
