@@ -68,28 +68,28 @@ export default function profile() {
 
       if(loading){
           return (
-              <div className="container">
+              <div className="d-flex justify-content-center mt-5">
                     <Spinner radius={120} color={"#333"} stroke={2} visible={true} />
               </div>
           )
       }
     
-if(status == false){
-    return(
-        <div className="container">
-            {/* {JSON.stringify(line)} */}
+// if(status == false){
+//     return(
+//         <div className="container">
+//             {/* {JSON.stringify(line)} */}
 
-            <h1 className="text-center">ท่านยังไม่ได้ลงทะเบียน</h1>
-            <button className="btn btn-primary btn-block" onClick={() =>{router.push('/register')}}>ลงทะเบียนที่นี่</button>
-        </div>
-    )
-}
+//             <h1 className="text-center">ท่านยังไม่ได้ลงทะเบียน</h1>
+//             <button className="btn btn-primary btn-block" onClick={() =>{router.push('/register')}}>ลงทะเบียนที่นี่</button>
+//         </div>
+//     )
+// }
       
 
-    return (
-        <div className="container">
-            {/* {JSON.stringify(line)} */}
-        <h1 className="text-center">ยินดีต้อนรับ</h1>
-        </div>
-    )
+//     return (
+//         <div className="container">
+//             {/* {JSON.stringify(line)} */}
+//         <h1 className="text-center">ยินดีต้อนรับ</h1>
+//         </div>
+//     )
 }
