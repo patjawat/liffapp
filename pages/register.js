@@ -10,10 +10,8 @@ import axios  from 'axios';
 const MySwal = withReactContent(Swal)
 
 export default function Register() {
-    const [profile, setProfile] = useState({})
-    const [categorisClass, setCategorisClass] = useState([])
-    const [save, setSave] = useState({})
 
+    const [categorisClass, setCategorisClass] = useState([])
     const liffId = process.env.NEXT_PUBLIC_LIFF_ID
 
     // form validation rules 
@@ -43,19 +41,18 @@ export default function Register() {
 
           }
             const res = await axios.post(`${process.env.API}profiles/add-me`,formInput)
-            console.log(res)
-            // console.log(formInput)
-            // MySwal.fire({
-            //   position: 'center-end',
-            //   icon: 'success',
-            //   title: 'บันทึกข้อมูลสำเร็จ',
-            //   showConfirmButton: false,
-            //   timer: 1500
-            // }).then(()=>{
-            //   liff.closeWindow()
-            // })
+
+            console.log(formInput)
+            MySwal.fire({
+              position: 'center-end',
+              icon: 'success',
+              title: 'บันทึกข้อมูลสำเร็จ',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(()=>{
+              liff.closeWindow()
+            })
             
-            // setSave(data)
         } catch (error) {
             console.log(error)
         }
