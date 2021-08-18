@@ -39,19 +39,21 @@ export default function profile() {
 
      
          const liff = (await import('@line/liff')).default
+         if (!liff.isLoggedIn()) {
+           liff.login();
+         }
+
         try {
           await liff.init({ liffId });
-          if (!liff.isLoggedIn()) {
-            liff.login();
-          }
 
           const profile = await liff.getProfile()
           await setLine(profile)
           await getMe()
 
-        const {data} = await axios.post(`${process.env.API}profiles/me`,{
-            id:profile ? profile.userId : ""
-        })
+        // const {data} = await axios.post(`${process.env.API}profiles/me`,{
+        //     // id:profile ? profile.userId : ""
+        //     id:"Ua45c4dcdc6ec65b8e9fff4a2693bcf72"
+        // })
 
         // const {data} = await axios.post(`${process.env.API}profiles/me`,{
         //     id:"Ua45c4dcdc6ec65b8e9fff4a2693bcf72"
@@ -100,16 +102,35 @@ if(status == false){
 
     return (
         <div className="container">
-            {/* {JSON.stringify(profile.pictureUrl)} */}
-            <div className="d-flex justify-content-center mt-5">
-            <Image src={profile.pictureUrl} width="200" height="200" alt="Picture of the author" className="rounded-circle z-depth-2"/>
-              </div>
-        <h3 className="text-center mt-3">{`${profile.pname}${profile.fname} ${profile.lname}`}</h3>
-        <p>สังกัด : </p>
-        <p>ยื่นขอในตำแหน่ง : </p>
-        <p>สาขาวิชา : </p>
-        <p>โทรศัพท์ : </p>
-        <p>email : </p>
+            <div className="card card-primary card-outline mt-1">
+            <div className="card-body box-profile">
+                <div className="text-center">
+            <Image src={profile.pictureUrl} width="200" height="200" alt="Picture of the author" className="img-circle elevation-3"/>
+
+                {/* <img className="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture" /> */}
+                </div>
+                <h3 className="profile-username text-center">{`${profile.pname}${profile.fname} ${profile.lname}`}</h3>
+                <p className="text-muted text-center">Software Engineer</p>
+                <ul className="list-group list-group-unbordered mb-3">
+                <li className="list-group-item">
+                    <b>สังกัด</b> <a className="float-right">....</a>
+                </li>
+                <li className="list-group-item">
+                    <b>ยื่นขอในตำแหน่ง</b> <a className="float-right">...</a>
+                </li>
+                <li className="list-group-item">
+                    <b>สาขาวิชา</b> <a className="float-right">...</a>
+                </li>
+                <li className="list-group-item">
+                    <b>โทรศัพท์</b> <a className="float-right">...</a>
+                </li>
+                
+                </ul>
+                <a href="#" className="btn btn-primary btn-block"><b>แก้ไข</b></a>
+            </div>
+            {/* /.card-body */}
+            </div>
+
         </div>
     )
 }
