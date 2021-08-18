@@ -51,7 +51,7 @@ export default function Register() {
 
 
     useEffect(async () => {
-      await reset({userId:profile.userId,displayName:profile.displayName,pictureUrl:profile.pictureUrl})
+      await reset({line_id:profile.userId,displayName:profile.displayName,pictureUrl:profile.pictureUrl})
     
        const liff = (await import('@line/liff')).default
       try {
