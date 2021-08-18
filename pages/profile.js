@@ -6,7 +6,7 @@ export default function profile() {
 
     const router = useRouter()
     const [profile, setProfile] = useState({})
-    const [status, setStatus] = useState(true)
+    const [status, setStatus] = useState(false)
     const [line, setLine] = useState("")
 
     const liffId = process.env.NEXT_PUBLIC_LIFF_ID
@@ -45,7 +45,7 @@ export default function profile() {
         const {data} = await axios.post(`${process.env.API}profiles/me`,{
             id:profile ? profile.userId : ""
         })
-        
+
         if(data.length==0){
             await setStatus(false)
             // router.push('/register')
