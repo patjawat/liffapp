@@ -37,20 +37,26 @@ export default function profile() {
 
     useEffect(async () => {
 
+     
         //  const liff = (await import('@line/liff')).default
         try {
-        //   await liff.init({ liffId });
-        //   const profile = await liff.getProfile()
-        //   await setLine(profile)
+          await liff.init({ liffId });
+          if (!liff.isLoggedIn()) {
+            liff.login();
+          }
+          
+          const profile = await liff.getProfile()
+          await setLine(profile)
           await getMe()
 
+        const {data} = await axios.post(`${process.env.API}profiles/me`,{
+            id:profile ? profile.userId : ""
+        })
+
         // const {data} = await axios.post(`${process.env.API}profiles/me`,{
-        //     id:profile ? profile.userId : ""
+        //     id:"Ua45c4dcdc6ec65b8e9fff4a2693bcf72"
         // })
 
-        const {data} = await axios.post(`${process.env.API}profiles/me`,{
-            id:"Ua45c4dcdc6ec65b8e9fff4a2693bcf72"
-        })
         await setProfile(data[0])
 
         await setLoading(false)
@@ -66,9 +72,8 @@ export default function profile() {
         } catch (error) {
           console.error('liff init error', error.message)
         }
-        // if (!liff.isLoggedIn()) {
-        //   liff.login();
-        // }
+
+    
       }, [])
 
 
@@ -99,7 +104,7 @@ if(status == false){
             <div className="d-flex justify-content-center mt-5">
             <Image src={profile.pictureUrl} width="200" height="200" alt="Picture of the author" className="rounded-circle z-depth-2"/>
               </div>
-        <h1 className="text-center">{`${profile.pname}${profile.fname} ${profile.lname}`}</h1>
+        <h3 className="text-center mt-3">{`${profile.pname}${profile.fname} ${profile.lname}`}</h3>
         <p>สังกัด : </p>
         <p>ยื่นขอในตำแหน่ง : </p>
         <p>สาขาวิชา : </p>
