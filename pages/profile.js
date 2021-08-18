@@ -28,8 +28,7 @@ export default function profile() {
 
 
     useEffect(async () => {
-        await reset({line_id:profile.userId,displayName:profile.displayName,pictureUrl:profile.pictureUrl})
-      
+
          const liff = (await import('@line/liff')).default
         try {
           await liff.init({ liffId });
