@@ -30,7 +30,7 @@ export default function Register() {
         try {
 
           const formInput = {
-            ยืฟทำ:data.pname.value,
+            pname:data.pname.value,
             fname:data.fname,
             lname:data.lname,
             line_id:data.line_id,

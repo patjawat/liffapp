@@ -2,6 +2,7 @@ import React,{useState,useEffect} from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import Spinner from 'react-spinner-material';
+import Image from 'next/image'
 export default function profile() {
 
     const router = useRouter()
@@ -36,16 +37,22 @@ export default function profile() {
 
     useEffect(async () => {
 
-         const liff = (await import('@line/liff')).default
+        //  const liff = (await import('@line/liff')).default
         try {
-          await liff.init({ liffId });
-          const profile = await liff.getProfile()
-          await setLine(profile)
-        //   await getMe()
+        //   await liff.init({ liffId });
+        //   const profile = await liff.getProfile()
+        //   await setLine(profile)
+          await getMe()
+
+        // const {data} = await axios.post(`${process.env.API}profiles/me`,{
+        //     id:profile ? profile.userId : ""
+        // })
 
         const {data} = await axios.post(`${process.env.API}profiles/me`,{
-            id:profile ? profile.userId : ""
+            id:"Ua45c4dcdc6ec65b8e9fff4a2693bcf72"
         })
+        await setProfile(data[0])
+
         await setLoading(false)
 
         if(data.length==0){
@@ -59,9 +66,9 @@ export default function profile() {
         } catch (error) {
           console.error('liff init error', error.message)
         }
-        if (!liff.isLoggedIn()) {
-          liff.login();
-        }
+        // if (!liff.isLoggedIn()) {
+        //   liff.login();
+        // }
       }, [])
 
 
@@ -88,8 +95,16 @@ if(status == false){
 
     return (
         <div className="container">
-            {/* {JSON.stringify(line)} */}
-        <h1 className="text-center">ยินดีต้อนรับ</h1>
+            {/* {JSON.stringify(profile.pictureUrl)} */}
+            <div className="d-flex justify-content-center mt-5">
+            <Image src={profile.pictureUrl} width="200" height="200" alt="Picture of the author" className="rounded-circle z-depth-2"/>
+              </div>
+        <h1 className="text-center">{`${profile.pname}${profile.fname} ${profile.lname}`}</h1>
+        <p>สังกัด : </p>
+        <p>ยื่นขอในตำแหน่ง : </p>
+        <p>สาขาวิชา : </p>
+        <p>โทรศัพท์ : </p>
+        <p>email : </p>
         </div>
     )
 }
