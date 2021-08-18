@@ -38,13 +38,13 @@ export default function profile() {
     useEffect(async () => {
 
      
-        //  const liff = (await import('@line/liff')).default
+         const liff = (await import('@line/liff')).default
         try {
           await liff.init({ liffId });
           if (!liff.isLoggedIn()) {
             liff.login();
           }
-          
+
           const profile = await liff.getProfile()
           await setLine(profile)
           await getMe()
