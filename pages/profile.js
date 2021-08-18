@@ -9,7 +9,7 @@ export default function profile() {
 
     const getMe = async () =>{
         try {
-            const res = await axios.post(`${process.env.API}profiles/add-me`,{
+            const res = await axios.post(`${process.env.API}profiles/me`,{
                 id:"Ua45c4dcdc6ec65b8e9fff4a2693bcf72"
             })
             console.log(res.data)
